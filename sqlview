@@ -1,0 +1,64 @@
+SELECT 
+  a.id,
+  a.invoice, 
+  a.emission, 
+  a.methods, 
+  a.price,
+  b.taxid,
+  b.name,
+  b.age,
+  b.cell_phone,
+  c.taxid,	
+  c.name,
+  d.name,
+  e.name, 
+  e.lower, 
+  e.upper, 
+  e.unit, 
+  e.testorder, 
+  e.refer1, 
+  e.refer2, 
+  e.result 	
+FROM 
+  public.resultests as a, 
+  public.patients as b, 
+  public.bioanalysts as c,
+  public.resultests_typetests as x,	
+  public.typetests as d,
+  public.resultests_infos e
+WHERE
+  a.patient_id = b.id and a.bioanalyst_id = c.id and
+  c.id = x.resultest_id and d.id = x.typetest_id and e.resultest_id = a.id;
+
+
+CREATE VIEW view_result AS (SELECT 
+  a.id as id_resxam,
+  a.invoice, 
+  a.emission, 
+  a.methods, 
+  a.price,
+  b.taxid as rif_paciente,
+  b.name as nombre_paciente,
+  b.age,
+  b.cell_phone,
+  c.taxid as rif_bioanalista,	
+  c.name as nombre_bioanalista,
+  d.name as nombre_examen,
+  e.name as nombre_detresultado, 
+  e.lower, 
+  e.upper, 
+  e.unit, 
+  e.testorder, 
+  e.refer1, 
+  e.refer2, 
+  e.result 	
+FROM 
+  public.resultests as a, 
+  public.patients as b, 
+  public.bioanalysts as c,
+  public.resultests_typetests as x,	
+  public.typetests as d,
+  public.resultests_infos e
+WHERE
+  a.patient_id = b.id and a.bioanalyst_id = c.id and
+  c.id = x.resultest_id and d.id = x.typetest_id and e.resultest_id = a.id);

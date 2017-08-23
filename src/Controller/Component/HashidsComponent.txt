@@ -1,0 +1,71 @@
+<?php
+namespace App\Controller\Component;
+
+use Cake\Controller\Component;
+use Cake\Controller\ComponentRegistry;
+use \Hashids\HashGenerator;
+use \Hashids\Hashids;
+
+/**
+ * Hashids component
+ */
+class HashidsComponent extends Component
+{
+    private static $hashids;
+
+    /**
+     * Default configuration.
+     *
+     * @var array
+     */
+    protected $_defaultConfig = [
+        'salt' => '',
+        'min_hash_length' => 0,
+        'alphabet' => ''
+        ];
+
+    public function initialize(array $config)
+    {
+        self::$hashids = new Hashids(
+            $this->_config['salt'],
+            $this->_config['min_hash_length'],
+            $this->_config['alphabet']
+        );
+    }
+
+    public static function encode()
+    {
+        return call_user_func_array(array (
+            self::$hashids,
+            'encode'
+        ), func_get_args());
+    }
+
+    public static function decode($hash, $array = false)
+    {
+        $result = self::$hashids->decode($hash);
+        if ($array) {
+            return $result;
+        }
+        if (!empty($result)) {
+            return $result[0];
+        }
+
+        return false;
+    }
+
+    public static function encode_hex($str)
+    {
+        return self::$hashids->encode_hex($str);
+    }
+
+    public static function decode_hex($hash)
+    {
+        return self::$hashids->decode_hex($hash);
+    }
+
+    public static function get_max_int_value()
+    {
+        return self::$hashids->get_max_int_value();
+    }
+}

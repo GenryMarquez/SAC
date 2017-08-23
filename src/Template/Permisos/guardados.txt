@@ -1,0 +1,717 @@
+// http://www.justinatack.com/blog/2015/cakephp3-with-hashids/
+//https://github.com/FriendsOfCake/CakePdf
+<?= $this->element('admin_header') ?>
+    <!-- Page Content -->
+    <div id="content" class="container">
+        <?= $this->Flash->render() ?>
+        <div class="row">
+            <?= $this->fetch('content') ?>
+        </div>
+    </div>
+    <?= $this->element('admin_footer') ?>
+
+
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?= $this->Url->build('/', true)?>AdminLTE/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="<?= $this->Url->build('/', true)?>AdminLTE/dist/css/skins/_all-skins.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="<?= $this->Url->build('/', true)?>AdminLTE/plugins/iCheck/flat/blue.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="<?= $this->Url->build('/', true)?>AdminLTE/plugins/morris/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="<?= $this->Url->build('/', true)?>AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="<?= $this->Url->build('/', true)?>AdminLTE/plugins/datepicker/datepicker3.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="<?= $this->Url->build('/', true)?>AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="<?= $this->Url->build('/', true)?>AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+
+
+    </head>
+
+    <body class="hold-transition skin-blue sidebar-mini">
+
+    <div class="wrapper">
+
+    <header class="main-header">
+        <?= $this->element('admin_header') ?>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <?= $this->element('admin_menu') ?>
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <?= $this->Flash->render() ?>
+        <?= $this->fetch('content') ?>
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+            <?= $this->element('admin_footer') ?>
+    </footer>
+
+    </div>
+    <!-- ./wrapper -->  
+   
+    </body>
+</html>
+
+
+
+<!-- Theme style -->
+    <link rel="stylesheet" type="text/css" href="<?= $this->Url->build('/', true)?>AdminLTE/dist/css/AdminLTE.min.css" media="screen, projection">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" type="text/css" href="<?= $this->Url->build('/', true)?>AdminLTE/dist/css/skins/_all-skins.min.css" media="screen, projection">
+    <!-- iCheck -->
+    <link rel="stylesheet" type="text/css" href="<?= $this->Url->build('/', true)?>AdminLTE/plugins/iCheck/flat/blue.css" media="screen, projection">
+    <!-- Morris chart -->
+    <link rel="stylesheet" type="text/css" href="<?= $this->Url->build('/', true)?>AdminLTE/plugins/morris/morris.css" media="screen, projection">
+    <!-- jvectormap -->
+    <link rel="stylesheet" type="text/css" href="<?= $this->Url->build('/', true)?>AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.css" media="screen, projection">
+    <!-- Date Picker -->
+  	<link rel="stylesheet" type="text/css" href="<?= $this->Url->build('/', true)?>AdminLTE/plugins/datepicker/datepicker3.css" media="screen, projection">
+  	<!-- Daterange picker -->
+  	<link rel="stylesheet" type="text/css" href="<?= $this->Url->build('/', true)?>AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css" media="screen, projection">
+  	<!-- bootstrap wysihtml5 - text editor -->
+  	<link rel="stylesheet" type="text/css" href="<?= $this->Url->build('/', true)?>AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" media="screen, projection">
+
+
+  	---------------------------------------------
+
+<?= $this->Form->create('User', ['url' => ['action' => 'login']]) ?>
+<fieldset>
+    <legend><?= __('Login') ?></legend>
+    <?= $this->Form->input('username') ?>
+    <?= $this->Form->input('password') ?>
+    <?= $this->Form->button(__('Login')) ?>
+</fieldset>
+<?= $this->Form->end() ?>
+
+
+
+  	<p class="login-box-msg">Sign in to start your session</p>
+
+<?= $this->Form->create('User', ['url' => ['action' => 'login']]) ?>
+		<div class="form-group has-feedback">
+			<!--<input type="email" class="form-control" placeholder="Email">-->
+			<?= $this->Form->input('username',['label' => false,'class'=>'form-control','placeholder'=>'User']) ?>
+			<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+		</div>
+		<div class="form-group has-feedback">
+			<!--<input type="password" class="form-control" placeholder="Password">-->
+			<?= $this->Form->input('password',['type'=>'password','label' => false,'class'=>'form-control','placeholder'=>'Password']) ?>
+			<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+		</div>
+		<div class="row">
+			<div class="col-xs-8">
+				<div class="checkbox icheck">
+					<label>
+						<input type="checkbox"> Remember Me
+					</label>
+				</div>
+			</div>
+		<!-- /.col -->
+			<div class="col-xs-4">
+				<!--<button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>-->
+				<?= $this->Form->button(__('Login',array('class'=>'btn btn-primary btn-block btn-flat','div'=>false))); ?>
+				<?= $this->Form->button('Login',array('class' => 'btn btn-primary btn-block btn-flat','div'=>false)); ?>
+			</div>
+		<!-- /.col -->
+		</div>
+<?= $this->Form->end() ?>
+
+<div class="social-auth-links text-center">
+  <p>- OR -</p>
+  <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+    Facebook</a>
+  <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+    Google+</a>
+</div>
+<!-- /.social-auth-links -->
+
+<a href="#">I forgot my password</a><br>
+<a href="register.html" class="text-center">Register a new membership</a>
+--------------------------------------------****************************************-------------------------------------------------
+
+
+<section class="content">
+	<!-- COLOR PALETTE -->
+	<div class="box box-default color-palette-box">
+		<div class="box-header with-border">
+			<h3 class="box-title"><i class="fa fa-tag"></i> Color Palette</h3>
+		</div>
+		<div class="box-body">
+			<div class="box-group" id="accordion">
+				<!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+				<?php foreach ($parents AS $cod => $nodopadre) :	?>
+				<div class="panel box box-primary">
+					<div class="box-header with-border">
+						<h4 class="box-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+								<?= $nodopadre; ?>
+							</a>
+						</h4>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse">
+						
+						<div class="box-body">
+							<?php foreach ($child[$cod] as $idhijo => $hijoalias): ?>
+							<ul class="todo-list">
+				                <li>
+				                  <!-- todo text -->
+				                  <span class="text"><?= $nodopadre; ?></span>
+				                  <!-- General tools such as edit or delete-->
+				                  <small class="label label-default"><?= $hijoalias ?></small>
+				                  <div class="tools">
+				                    <i class="fa fa-edit"></i><?= $this->Html->link(__('Edit'), ['action' => 'edit', $idhijo]) ?>
+				                  </div>
+				                </li>
+			              	</ul>
+			              	<?php endforeach; ?>
+						</div>
+						
+					</div>
+				</div>
+				<?php endforeach; ?>
+				<!--<div class="panel box box-danger">
+					<div class="box-header with-border">
+						<h4 class="box-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+								Collapsible Group Danger
+							</a>
+						</h4>
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse">
+						<div class="box-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+							wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
+							eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+							assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
+							nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+							farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+							labore sustainable VHS.
+						</div>
+					</div>
+				</div>
+				<div class="panel box box-success">
+					<div class="box-header with-border">
+						<h4 class="box-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+								Collapsible Group Success
+							</a>
+						</h4>
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse">
+						<div class="box-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+							wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
+							eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+							assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
+							nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+							farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+							labore sustainable VHS.
+						</div>
+					</div>
+				</div>-->
+			</div>	
+		</div>
+		<!-- /.box-body -->
+	</div>
+	<!-- /.box -->
+</section>
+<!-- /.content -->
+
+
+*********************PERMISOS***********************
+<!--<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('New Permiso'), ['action' => 'add']) ?></li>
+    </ul>
+</nav>
+<div class="users index large-9 medium-8 columns content">
+    <h3><?= __('Permisos') ?></h3>
+    <div id="accordion">
+		<?php foreach ($parents AS $cod => $nodopadre) :	?>
+		<h3><a href='#'><?php echo $nodopadre;?></a></h3>
+	    <table cellpadding="0" cellspacing="0">
+	        <tbody>
+	            <?php foreach ($child[$cod] as $idhijo => $hijoalias): ?>
+	            <tr>
+	                <td><?= $nodopadre; ?></td>
+	                <td><?= $hijoalias ?></td>
+	                <td class="actions">
+	                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $idhijo]) ?>
+	                </td>
+	            </tr>
+	            <?php endforeach; ?>
+	        </tbody>
+	    </table>
+	    <?php endforeach; ?>
+    </div>
+</div>-->
+
+/******************************************************/
+
+<td id='enviar' class="mailbox-date"><?= $this->Html->image("Green_tick.png", ["alt" => 'key='.$id.'&key2='.$nodopadre."/".$hijoalias.'&key3='.$permisosflag ,"style" =>"display:inline;","class"=>"tilde"]).
+$this->Html->image("ajax-loader.gif", ["style" =>"display:none;","class"=>"cargador"]) ?></td>
+
+<div class="row">
+  <div class="col-md-12"><legend><h2>Asignar Permisos de Grupo</h2></legend></div>
+    <?php //pr($this->Url->build('/', true).'img/Cross.png'); ?>
+  <div class="col-md-12"><?php echo $this->Html->link('Volver',array('action' => '/'),array("class"=>"btn btn-default"));?></div>
+  <div class="col-md-12">
+	<div>
+		<table cellpadding="0" cellspacing="0">
+
+		</table>
+	</div>
+	<div class="demo">
+
+		<div id="accordion">
+				<?php
+				 
+				foreach ($parents AS $cod => $nodopadre) {
+						  
+				?>
+				<h3><a href='#'><?php echo $nodopadre;?></a></h3>
+					<div>
+						
+						<p id="enviar">
+							<table class="table table-hover">
+							<?php
+							 $permisosflag;
+							foreach($child[$cod] as $idhijo => $hijoalias){
+								echo "<tr>";
+								echo "<td>".$hijoalias."</td>";
+								if(!$permiso[$idhijo])
+								{
+								   $permisosflag = 0;
+								  
+								   echo "<td class='texto'>Este Grupo no tiene permisos</td>";
+									//echo "<td>".$this->Html->link(array('action' => '/'),$this->Html->image('Cross.png'))."</td>";
+									echo "<td id='enviar'>".
+											$this->Html->image("Cross.png", ["alt" => 'key='.$id.'&key2='.$nodopadre."/".$hijoalias.'&key3='.$permisosflag ,"style" =>"display:inline;","class"=>"tilde"]).
+											$this->Html->image("ajax-loader.gif", ["style" =>"display:none;","class"=>"cargador"]).
+											"</td>";
+								   }else{
+									$permisosflag = 1;
+									 echo "<td class='texto'>Este Grupo tiene permisos</td>";
+									 echo "<td id='enviar'>".
+											$this->Html->image("Green_tick.png", ["alt" => 'key='.$id.'&key2='.$nodopadre."/".$hijoalias.'&key3='.$permisosflag ,"style" =>"display:inline;","class"=>"tilde"]).
+											$this->Html->image("ajax-loader.gif", ["style"=>"display:none;"]).
+											 "</td>";                            
+								}
+							   }
+							   echo "</tr>";	
+							?>
+							</table>
+						</p>
+					</div>
+				 <?php
+				  }
+				 ?>
+		</div>
+
+	</div><!-- End demo -->
+  
+  </div>
+</div>
+*****************
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('New Lab Typetest'), ['action' => 'add']) ?></li>
+    </ul>
+</nav>
+<div class="labTypetests index large-9 medium-8 columns content">
+    <h3><?= __('Lab Typetests') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th><?= $this->Paginator->sort('id') ?></th>
+                <th><?= $this->Paginator->sort('code') ?></th>
+                <th><?= $this->Paginator->sort('name') ?></th>
+                <th><?= $this->Paginator->sort('created') ?></th>
+                <th><?= $this->Paginator->sort('modified') ?></th>
+                <th><?= $this->Paginator->sort('status') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($labTypetests as $labTypetest): ?>
+            <tr>
+                <td><?= $this->Number->format($labTypetest->id) ?></td>
+                <td><?= h($labTypetest->code) ?></td>
+                <td><?= h($labTypetest->name) ?></td>
+                <td><?= h($labTypetest->created) ?></td>
+                <td><?= h($labTypetest->modified) ?></td>
+                <td><?= h($labTypetest->status) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $labTypetest->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $labTypetest->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $labTypetest->id], ['confirm' => __('Are you sure you want to delete # {0}?', $labTypetest->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+        </ul>
+        <p><?= $this->Paginator->counter() ?></p>
+    </div>
+</div>
+
+
+
+------------------------------------------
+<table data-editing="true" data-sorting="true" data-filtering="true" data-paging="true" class="table footable footable-1 footable-editing footable-editing-right footable-filtering footable-filtering-right footable-paging footable-paging-center breakpoint-lg" style="display: table;">
+                        <thead>
+                        <tr class="footable-filtering">
+                        <th colspan="3">
+	                        <form class="form-inline">
+		                        <div class="form-group">
+		                        <label class="sr-only">Search</label>
+			                        <div class="input-group">
+			                        <input type="text" class="form-control" placeholder="Search">
+				                        <div class="input-group-btn">
+				                        <button type="button" class="btn btn-primary"><span class="fooicon fooicon-search"></span></button>
+				                        <button type="button" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
+					                        <ul class="dropdown-menu dropdown-menu-right">
+					                        <li><a class="checkbox"><label><input type="checkbox" checked="checked">ID</label></a></li>
+					                        <li><a class="checkbox"><label><input type="checkbox" checked="checked">Codigo</label></a></li>
+					                        <li><a class="checkbox"><label><input type="checkbox" checked="checked">Nombre</label></a></li>
+					                        </ul>
+				                        </div>
+			                        </div>
+		                        </div>
+	                        </form>
+                        </th>
+                        </tr>
+                            <tr class="footable-header">
+                            <th data-breakpoints="xs" class="footable-sortable" style="display: table-cell;">ID<span class="fooicon fooicon-sort"></span></th>
+                            <th class="footable-sortable" style="display: table-cell;">Codigo<span class="fooicon fooicon-sort"></span></th><th class="footable-sortable" style="display: table-cell;">Nombre<span class="fooicon fooicon-sort"></span></th>
+                            <th style="display: none;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                                    
+                            
+                        <tr>
+                                
+                                
+                                
+                            <td style="display: table-cell;">1</td><td style="display: table-cell;">01</td><td style="display: table-cell;">HEMATOLIGIA</td><td class="footable-editing" style="display: none;"><div role="group" class="btn-group btn-group-xs"><button title="Ver" class="btn btn-default footable-view" type="button"><span aria-hidden="true" class="fooicon fooicon-eye-open"></span></button> <button title="Editar" class="btn btn-default footable-edit" type="button"><span aria-hidden="true" class="fooicon fooicon-pencil"></span></button> <button title="Eliminar" class="btn btn-default footable-delete" type="button"><span aria-hidden="true" class="fooicon fooicon-trash"></span></button></div></td></tr></tbody>
+                    <tfoot><tr class="footable-editing"><td colspan="3"><button class="btn btn-primary footable-show" type="button"><span aria-hidden="true" class="fooicon fooicon-pencil"></span> Editar Datos</button><button class="btn btn-primary footable-add" type="button"><span aria-hidden="true" class="fooicon fooicon-file"></span> Nuevo</button> <button class="btn btn-default footable-hide" type="button">Cancel</button></td></tr></tfoot></table>
+
+
+/***************************************/
+                    <table class="table" data-paging="true" data-filtering="true" data-sorting="true" data-editing="true">
+                        <thead>
+                            <tr>
+                                <th data-breakpoints="xs">ID</th>
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <!--<th>Last Name</th>
+                                <th data-breakpoints="xs">Job Title</th>
+                                <th data-breakpoints="xs sm">Started On</th>
+                                <th data-breakpoints="xs sm md" data-title="DOB">Date of Birth</th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($labTypetests as $labTypetest): ?>
+                            <tr>
+                                <td><?= $this->Number->format($labTypetest->id) ?></td>
+                                <td><?= h($labTypetest->code) ?></td>
+                                <td><?= h($labTypetest->name) ?></td>
+                            </tr>
+                        <?php endforeach; ?>    
+                        </tbody>
+                    </table>
+                    ft = FooTable.init('.table', {
+            editing: {
+                addRow: function(){
+                    //document.location = dir;
+                    var url = '<?= $this->Url->build(['controller' => 'LabTypetests', 'action' => 'add'], true);?>';
+                    console.log(url);
+                    window.location = url;
+                },
+                viewRow: function(row){
+                    var values = row.val();
+                    //console.log(values.col1);
+                    var url = '<?= $this->Url->build(['controller' => 'LabTypetests', 'action' => 'view'], true);?>/' + values.col1;
+                    console.log(url);
+                    window.location = url;
+                },
+                editRow: function(row){
+                    var values = row.val();
+                    var url = '<?= $this->Url->build(['controller' => 'LabTypetests', 'action' => 'edit'], true);?>/' + values.col1;
+                    console.log(url);
+                    window.location = url;
+                },
+                deleteRow: function(row){
+                    if (confirm('Are you sure you want to delete the row?')){
+                        var values = row.val();
+                        $.ajax({
+                            url: '<?= $this->Url->build(['controller' => 'LabTypetests','action' => 'delete']) ?>/' + values.col1,
+                            type: 'GET',
+                            //data: { authorID: $(this).data('id') }
+                            success : function(result)
+                            {
+                                row.delete();
+                                console.log(result);
+                                //console.log(url);
+                                /*var dir = '<?= $this->Url->build(['controller' => 'LabTypetests', 'action' => 'index'], true);?>';
+                                document.location = dir;*/
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) 
+                            {
+                                console.log(xhr.status);
+                                console.log(thrownError);
+                            }
+                           
+                        });
+                    }
+                }
+            }
+        }),
+        uid = 10001;                    
+
+
+        88888888888888888888888888888888888888
+
+        <table class="footable table demo metro-blue" data-filter="#filter" data-page-size="15">
+                    <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Codigo
+                        </th>
+                        <th data-hide="phone">
+                            Nombre
+                        </th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($labTypetests as $labTypetest): ?> 
+                        <tr>
+                            <td><?= $this->Number->format($labTypetest->id) ?></td>
+                            <td><?= h($labTypetest->code) ?></td>
+                            <td><?= h($labTypetest->name) ?></td>
+                            <td class="footable-editing">
+                                <div role="group" class="btn-group">
+                                    <?= $this->Html->link(__(''), ['action' => 'view', $hashids->encode($labTypetest->id)],['class'=>'btn btn-default btn-sm fa fa-eye','title'=>'Ver']) ?>
+                                    <?= $this->Html->link(__(''), ['action' => 'edit', $hashids->encode($labTypetest->id)],['class'=>'btn btn-default btn-sm fa fa-pencil','title'=>'Editar']) ?>
+                                    <?= $this->Form->postLink(__('<div class="btn btn-default btn-sm fa fa-trash-o" title="Eliminar"></div>'), ['action' => 'delete', $hashids->encode($labTypetest->id)], ['escape'   => false,'confirm' => __('Are you sure you want to delete # {0}?', $labTypetest->code)]) ?>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="12">
+                            <div class="pagination pagination-centered"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+
+
+                ----------------------------------------------------------
+                </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <!-- content here... -->
+                                <ul class="pagination pagination-sm">
+                                    <li><?php echo $this->Paginator->prev('<i class="icon-backward"></i>&laquo;', array('escape'=>false)) ;?></li>
+                                    <li><?php echo $this->Paginator->numbers(array('separator'=>'')); ;?> </li>
+                                    <li><?php echo $this->Paginator->next('&raquo;<i class="icon-forward"></i>', array('escape'=>false)) ;?></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tfoot>
+
+                    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+                        <!--modal-->
+    <div class="example-modal">
+        <div class="modal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="editor-title"></h4>
+              </div>
+
+                <div class="modal-body">
+                <form id="editor" method="post">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-10">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="textinput">Nombre</label>
+                                        <input type="text" class="form-control" id="txtNombre" placeholder="Nombre">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="textinput">Inferior</label>
+                                        <input type="text" class="form-control" id="txtInferior" placeholder="Inferior">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="textinput">Superoir</label>
+                                        <input type="text" class="form-control" id="txtSuperoir" placeholder="Superoir">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="textinput">Unidad</label>
+                                        <input type="text" class="form-control" id="txtUnidad" placeholder="Unidad">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="textinput">Orden</label>
+                                        <input type="text" class="form-control" id="txtOrden" placeholder="Orden">
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div><!-- /.row -->
+
+                <div class="modal-header">
+                    <h4 class="modal-title" style="text-align:center;">Resultados</h4>
+                </div>
+
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-5">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="textinput">Resultado 1</label>
+                                        <input type="text" class="form-control" id="txtResultado1" placeholder="Resultado">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="textinput">Resultado 2</label>
+                                        <input type="text" class="form-control" id="txtResultado2" placeholder="Resultado">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="textinput">Resultado 3</label>
+                                        <input type="text" class="form-control" id="txtResultado3" placeholder="Resultado">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="textinput">Resultado 4</label>
+                                        <input type="text" class="form-control" id="txtResultado4" placeholder="Resultado">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="textinput">Resultado 5</label>
+                                        <input type="text" class="form-control" id="txtResultado5" placeholder="Resultado">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-0">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="textinput">Resultado 6</label>
+                                        <input type="text" class="form-control" id="txtResultado6" placeholder="Resultado">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="textinput">Resultado 7</label>
+                                        <input type="text" class="form-control" id="txtResultado7" placeholder="Resultado">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="textinput">Resultado 8</label>
+                                        <input type="text" class="form-control" id="txtResultado8" placeholder="Resultado">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="textinput">Resultado 9</label>
+                                        <input type="text" class="form-control" id="txtResultado9" placeholder="Resultado">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="textinput">Resultado 10</label>
+                                        <input type="text" class="form-control" id="txtResultado10" placeholder="Resultado">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+                    </div><!-- /.row -->
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-10">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="textinput">Referencia 1</label>
+                                        <input type="text" class="form-control" id="txtReferencia1" placeholder="Referencia">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="textinput">Referencia 2</label>
+                                        <input type="text" class="form-control" id="txtReferencia2" placeholder="Referencia">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div><!-- /.row -->
+                </fieldset>
+                </form> 
+                </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save">Save changes</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    </div>
+    <!--modal-->

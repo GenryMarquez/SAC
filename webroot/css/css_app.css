@@ -1,0 +1,58 @@
+td.footable-editing {
+    max-width: 300px;
+    width: 200px;
+}
+.pull-right-g {
+    text-align: right;
+    padding: 5px;
+}
+
+.pagination-centered {
+    text-align: center;
+}
+
+div.message{
+	color: #fff !important;
+}
+
+div.message.error{
+	background-color: #dd4b39 !important;
+	border-color: #c23321;
+	border-left: 5px solid #eee;
+    border-radius: 3px;
+    margin: 5px 15px 0 10px;
+    padding: 15px 30px 15px 15px;
+}
+
+div.message.success{
+	background-color: #00a65a !important;
+	border-color: #00733e;
+	border-left: 5px solid #eee;
+    border-radius: 3px;
+    margin: 5px 15px 0 10px;
+    padding: 15px 30px 15px 15px;
+}
+
+div.message.hidden {
+    height: 0;
+}
+
+.error-message {
+   color: #dd4b39;
+}
+
+
+.form-error
+{
+    border-color: #dd4b39 !important;
+    box-shadow: none;
+}
+
+.required .error {
+    border-color: #a94442;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+.profile-user-img {
+    width: 220px;
+}
